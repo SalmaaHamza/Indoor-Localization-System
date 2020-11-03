@@ -1,0 +1,22 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="dark">
+    <ion-title>
+      We can find you wherever you are <ion-icon name="skull-outline"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" >
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" ng-controller="MyCtrl">
+    <svg id="svg1" ><g>
+      <text id="chk" x=70 y=30>&#x2639;
+        <animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="2s" repeatCount="indefinite" /></text>
+    </g>   </svg>
+  </div>
+</ion-content>
