@@ -9,23 +9,26 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 export class HomePage implements OnInit {
     bookingListRef: AngularFireList<any>;
     bookingRef: AngularFireObject<any>;
-
-    constructor(private db: AngularFireDatabase){
+    gps: number;
+    constructor(private db: AngularFireDatabase) {
 
     }
     ngOnInit() {
-        this.getBookingList();
+        this.gps = this.getBookingList();
+        this.getLocation(this.gps);
     }
     getBookingList() {
         console.log('yarab');
         this.db.object('yarab-3b871/sensor/-MKaY6oKjFd52XqSekLS/RollNo').valueChanges().subscribe(
-            data=>{
+            data => {
                 console.log(data);
-
+                return data;
             }
-        )  ;
-        alert(this.bookingListRef);
-    }
+        );
 
+    }
+    getLocation(gps) {
+        console.log(gps);
+    }
 
 }
