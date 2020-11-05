@@ -92,6 +92,10 @@ export class HomePage implements OnInit {
         }
         else if (this.loctionDict[this.value_fb]['x'] !== 135) {
             while (this.oldVal['x'] !== 135) {
+<<<<<<< HEAD
+                this.sketch();
+=======
+>>>>>>> 8b55e7d3b1dde22336f85d8e5ed7fc60c9c09318
                 this.oldVal["x"] += 5;
                 // console.log(this.oldVal);
                 // console.log('move x');
