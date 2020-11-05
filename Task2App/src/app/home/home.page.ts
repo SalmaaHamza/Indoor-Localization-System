@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     }
     getBookingList() {
         console.log('yarab');
-        this.db.object('prediction').valueChanges().subscribe(
+        this.db.object('yarab-3b871/sensor/-MKaY6oKjFd52XqSekLS/RollNo').valueChanges().subscribe(
             data => {
                 console.log(typeof data, data);
                 this.value_fb = data.toString();
@@ -90,7 +90,7 @@ export class HomePage implements OnInit {
         }
         else if (this.loctionDict[this.value_fb]['x'] !== 135) {
             while (this.oldVal['x'] !== 135) {
-                await this.sketch();
+                this.sketch();
                 this.oldVal["x"] += 5;
                 // console.log(this.oldVal);
                 // console.log('move x');
