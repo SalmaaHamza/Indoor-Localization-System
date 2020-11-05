@@ -9,11 +9,11 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 export class HomePage implements OnInit {
 
     value_fb: any = 0;
-    xCoord: any;
-    yCoord: any;
+    // xCoord: any;
+    // yCoord: any;
     oldVal: any = {
-        'x': 0,
-        'y': 0
+        'x': 70,
+        'y': 30
     };
     loctionDict = {
         "0": {
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
             "y": 390
         },
         "6": {
-            "x": 125,
+            "x": 135,
             "y": 480
         },
         "7": {
@@ -69,28 +69,74 @@ export class HomePage implements OnInit {
 
         )
     }
-    getLocation() {
-        console.log(this.value_fb);
-        console.log("y=", this.loctionDict["0"]['y']);
+    getLocation = async () => {
+        // console.log(this.value_fb);
+        // console.log("y=", this.loctionDict["0"]['y']);
         // // console.log()
-        // if (this.loctionDict[this.value_fb]['x'] === 135) {
-        //     while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
-        //         if(this.oldVal['y']>this.loctionDict[this.value_fb]["y"]){
-        //             this
-        //         }
-        //     }
+        if (this.loctionDict[this.value_fb]['x'] === 135) {
+            while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
+                if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
+                    this.oldVal["y"] -= 5;
 
-        // }
-        this.xCoord = this.loctionDict[this.value_fb]['x'];
-        this.yCoord = this.loctionDict[this.value_fb]['y'];
-        //console.log(this.xCoord);
-        document.getElementById('chk').setAttribute("x", this.xCoord.toString());
-        document.getElementById('chk').setAttribute("y", this.yCoord.toString());
-        this.oldVal.x = this.xCoord;
-       // console.log(this.oldVal.x);
-        this.oldVal.y = this.yCoord;
+                }
+                else {
+                    this.oldVal["y"] += 5;
+
+                }
+                // console.log(this.oldVal);
+                // setTimeout(() => { this.sketch() }, 10000);
+                // this.sketch();
+            }
+        }
+        else if (this.loctionDict[this.value_fb]['x'] !== 135) {
+            while (this.oldVal['x'] !== 135) {
+                await this.sketch();
+                this.oldVal["x"] += 5;
+                // console.log(this.oldVal);
+                // console.log('move x');
+                //this.sketch();
+
+            }
+            while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
+                if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
+                    this.oldVal["y"] -= 5;
+                }
+                else {
+                    this.oldVal["y"] += 5;
+                }
+                // console.log('move y');
+                // console.log(this.oldVal);
+                setTimeout(() => { this.sketch() }, 1000);
+                this.sketch();
+            }
+            while (this.oldVal['x'] !== this.loctionDict[this.value_fb]['x']) {
+                if (this.oldVal['x'] > this.loctionDict[this.value_fb]["x"]) {
+                    this.oldVal["x"] -= 5;
+                }
+                else {
+                    this.oldVal["x"] += 5;
+                }
+                // console.log('move x again');
+                // console.log(this.oldVal);
+                setTimeout(() => { this.sketch() }, 1000);
+                this.sketch();
+            }
+        }
+
+        // this.xCoord = this.loctionDict[this.value_fb]['x'];
+        // this.yCoord = this.loctionDict[this.value_fb]['y'];
+        // console.log(this.xCoord);
+        // document.getElementById('chk').setAttribute("x", this.xCoord.toString());
+        // document.getElementById('chk').setAttribute("y", this.yCoord.toString());
+        // this.oldVal.x = this.loctionDict[this.value_fb]['x'];
+        // console.log(this.oldVal.x);
+        // this.oldVal.y = this.loctionDict[this.value_fb]['y'];
 
 
+    }
+    sketch() {
+        document.getElementById('chk').setAttribute("x", this.oldVal["x"].toString());
+        document.getElementById('chk').setAttribute("y", this.oldVal["y"].toString());
     }
 
 }
