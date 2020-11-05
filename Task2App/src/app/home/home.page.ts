@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     }
     getBookingList() {
         console.log('yarab');
-        this.db.object('yarab-3b871/sensor/-MKaY6oKjFd52XqSekLS/RollNo').valueChanges().subscribe(
+        this.db.object('prediction').valueChanges().subscribe(
             data => {
                 console.log(typeof data, data);
                 this.value_fb = data.toString();
