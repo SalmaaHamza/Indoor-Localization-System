@@ -11,9 +11,9 @@ export class HomePage implements OnInit {
     value_fb: any = 0;
     xCoord: any;
     yCoord: any;
-    oldVal: {
-        "x": 0,
-        "y": 0
+    oldVal: any = {
+        'x': 0,
+        'y': 0
     };
     loctionDict = {
         "0": {
@@ -67,11 +67,11 @@ export class HomePage implements OnInit {
                 this.getLocation();
             }
 
-        );
+        )
     }
     getLocation() {
         console.log(this.value_fb);
-        console.log("y=", this.loctionDict["0"]['y'])
+        console.log("y=", this.loctionDict["0"]['y']);
         // // console.log()
         // if (this.loctionDict[this.value_fb]['x'] === 135) {
         //     while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
@@ -83,11 +83,12 @@ export class HomePage implements OnInit {
         // }
         this.xCoord = this.loctionDict[this.value_fb]['x'];
         this.yCoord = this.loctionDict[this.value_fb]['y'];
-        console.log(this.yCoord.toString());
+        //console.log(this.xCoord);
         document.getElementById('chk').setAttribute("x", this.xCoord.toString());
         document.getElementById('chk').setAttribute("y", this.yCoord.toString());
-        this.oldVal['x'] = this.loctionDict[this.value_fb]['x'];
-        this.oldVal['y'] = this.loctionDict[this.value_fb]['y'];
+        this.oldVal.x = this.xCoord;
+       // console.log(this.oldVal.x);
+        this.oldVal.y = this.yCoord;
 
 
     }
