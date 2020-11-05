@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     }
     getBookingList() {
         console.log('yarab');
-        this.db.object('prediction').valueChanges().subscribe(
+        this.db.object('yarab-3b871/sensor/-MKaY6oKjFd52XqSekLS/RollNo').valueChanges().subscribe(
             data => {
                 console.log(typeof data, data);
                 this.value_fb = data.toString();
@@ -86,6 +86,8 @@ export class HomePage implements OnInit {
                 // console.log(this.oldVal);
                 // setTimeout(() => { this.sketch() }, 10000);
                 this.sketch();
+                setTimeout(() => { }, 1000);
+
             }
         }
         else if (this.loctionDict[this.value_fb]['x'] !== 135) {
@@ -95,6 +97,7 @@ export class HomePage implements OnInit {
                 // console.log('move x');
                 //this.sketch();
                 this.sketch();
+                setTimeout(() => { }, 1000);
             }
             while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
                 if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
@@ -105,8 +108,10 @@ export class HomePage implements OnInit {
                 }
                 // console.log('move y');
                 // console.log(this.oldVal);
-                setTimeout(() => { this.sketch() }, 1000);
+
                 this.sketch();
+                setTimeout(() => { }, 1000);
+
             }
             while (this.oldVal['x'] !== this.loctionDict[this.value_fb]['x']) {
                 if (this.oldVal['x'] > this.loctionDict[this.value_fb]["x"]) {
@@ -117,8 +122,9 @@ export class HomePage implements OnInit {
                 }
                 // console.log('move x again');
                 // console.log(this.oldVal);
-                setTimeout(() => { this.sketch() }, 1000);
                 this.sketch();
+                setTimeout(() => { }, 1000);
+
             }
         }
 
