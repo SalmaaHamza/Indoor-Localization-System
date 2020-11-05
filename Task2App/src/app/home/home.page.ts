@@ -85,17 +85,16 @@ export class HomePage implements OnInit {
                 }
                 // console.log(this.oldVal);
                 // setTimeout(() => { this.sketch() }, 10000);
-                // this.sketch();
+                this.sketch();
             }
         }
         else if (this.loctionDict[this.value_fb]['x'] !== 135) {
             while (this.oldVal['x'] !== 135) {
-                await this.sketch();
                 this.oldVal["x"] += 5;
                 // console.log(this.oldVal);
                 // console.log('move x');
                 //this.sketch();
-
+                this.sketch();
             }
             while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
                 if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
