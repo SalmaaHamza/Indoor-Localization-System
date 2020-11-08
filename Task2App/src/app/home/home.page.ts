@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'app-home',
@@ -7,7 +8,10 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+    heyy = 'opacity';
+    x: boolean = true;
+    yAnimation: any = 0;
+    xAnimation: any = 0;
     value_fb: any = 0;
     // xCoord: any;
     // yCoord: any;
@@ -62,90 +66,88 @@ export class HomePage implements OnInit {
         this.db.object('yarab-3b871/sensor/-MKaY6oKjFd52XqSekLS/RollNo').valueChanges().subscribe(
             data => {
                 console.log(typeof data, data);
+
+                this.yAnimation = document.getElementById('moveY');
+                this.yAnimation.beginElement();
+                this.xAnimation = document.getElementById('moveX');
+                this.xAnimation.beginElement();
+
                 this.value_fb = data.toString();
                 // this.yCoord = this.value_fb.toString();
                 this.getLocation();
+
+                // this.testText("yAnimation", "0", "0", "65", "0");
+                // this.testText("Yanimation", "0", "30", "0", "70");
+                // this.testText("yAnimation", "0", "0", "0", "120");
+
+
             }
 
         )
     }
-    getLocation = async () => {
+    getLocation() {
         // console.log(this.value_fb);
         // console.log("y=", this.loctionDict["0"]['y']);
-        // // console.log()
+        // console.log(n)
         if (this.loctionDict[this.value_fb]['x'] === 135) {
-            while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
-                if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
-                    this.oldVal["y"] -= 5;
+            $('#moveY').attr(
+                {
 
-                }
-                else {
-                    this.oldVal["y"] += 5;
-
-                }
-                // console.log(this.oldVal);
-                // setTimeout(() => { this.sketch() }, 10000);
-                this.sketch();
-                setTimeout(() => { }, 1000);
-
-            }
+                    "from": this.oldVal["y"],
+                    "to": this.loctionDict[this.value_fb]["y"]
+                });
+            console.log("A");
+            console.log(document.getElementById('moveY').getAttribute("from")
+                , document.getElementById('moveY').getAttribute("to")
+            )
         }
-        else if (this.loctionDict[this.value_fb]['x'] !== 135) {
-            while (this.oldVal['x'] !== 135) {
-<<<<<<< HEAD
-                this.sketch();
-=======
->>>>>>> 8b55e7d3b1dde22336f85d8e5ed7fc60c9c09318
-                this.oldVal["x"] += 5;
-                // console.log(this.oldVal);
-                // console.log('move x');
-                //this.sketch();
-                this.sketch();
-                setTimeout(() => { }, 1000);
-            }
-            while (this.oldVal['y'] !== this.loctionDict[this.value_fb]['y']) {
-                if (this.oldVal['y'] > this.loctionDict[this.value_fb]["y"]) {
-                    this.oldVal["y"] -= 5;
-                }
-                else {
-                    this.oldVal["y"] += 5;
-                }
-                // console.log('move y');
-                // console.log(this.oldVal);
+        else if (this.loctionDict[this.value_fb]['x'] !== 135 && this.oldVal["x"] != 135) {
+            console.log("old_Xvalue", this.oldVal["x"]);
+            document.getElementById('moveX').setAttribute("from", this.oldVal["x"]);
+            document.getElementById('moveX').setAttribute("to", "135");
+            //      document.getElementById('moveX').setAttribute("animation-delay", '10s');
+            console.log("B");
+            document.getElementById('moveY').setAttribute("from", this.oldVal["y"]);
+            document.getElementById('moveY').setAttribute("to", this.loctionDict[this.value_fb]["y"]);
+            setTimeout(() => {
+                document.getElementById('moveX').setAttribute("from", "135");
+                document.getElementById('moveX').setAttribute("to", this.loctionDict[this.value_fb]["x"]);
 
-                this.sketch();
-                setTimeout(() => { }, 1000);
-
-            }
-            while (this.oldVal['x'] !== this.loctionDict[this.value_fb]['x']) {
-                if (this.oldVal['x'] > this.loctionDict[this.value_fb]["x"]) {
-                    this.oldVal["x"] -= 5;
-                }
-                else {
-                    this.oldVal["x"] += 5;
-                }
-                // console.log('move x again');
-                // console.log(this.oldVal);
-                this.sketch();
-                setTimeout(() => { }, 1000);
-
-            }
+            }, 3000);
         }
+        setTimeout(() => {
+            this.oldVal['x'] = this.loctionDict[this.value_fb]["x"];
+            this.oldVal['y'] = this.loctionDict[this.value_fb]["y"];
 
-        // this.xCoord = this.loctionDict[this.value_fb]['x'];
-        // this.yCoord = this.loctionDict[this.value_fb]['y'];
-        // console.log(this.xCoord);
-        // document.getElementById('chk').setAttribute("x", this.xCoord.toString());
-        // document.getElementById('chk').setAttribute("y", this.yCoord.toString());
-        // this.oldVal.x = this.loctionDict[this.value_fb]['x'];
-        // console.log(this.oldVal.x);
-        // this.oldVal.y = this.loctionDict[this.value_fb]['y'];
+
+        }, 3000);
+
+        console.log(this.loctionDict[this.value_fb]['x'], this.oldVal["x"]);
 
 
     }
+
+    // this.xCoord = this.loctionDict[this.value_fb]['x'];
+    // this.yCoord = this.loctionDict[this.value_fb]['y'];
+    // console.log(this.xCoord);
+    // document.getElementById('chk').setAttribute("x", this.xCoord.toString());
+    // document.getElementById('chk').setAttribute("y", this.yCoord.toString());
+    // this.oldVal.x = this.loctionDict[this.value_fb]['x'];
+    // console.log(this.oldVal.x);
+    // this.oldVal.y = this.loctionDict[this.value_fb]['y'];
+
+
     sketch() {
-        document.getElementById('chk').setAttribute("x", this.oldVal["x"].toString());
-        document.getElementById('chk').setAttribute("y", this.oldVal["y"].toString());
+        document.getElementById('chk').style.transform = 'translateY(20px)';
+        // document.getElementById('chk').setAttribute("x", this.oldVal["x"].toString());
+        // document.getElementById('chk').setAttribute("y", this.oldVal["y"].toString());
     }
+    testText(whichAnim, x1, y1, x2, y2) {
+
+        var result = "M " + x1 + " " + y1 + " " + "L " + x2 + " " + y2;
+        console.log(result);
+        document.getElementById(whichAnim).setAttribute("path", result);
+    }
+
 
 }

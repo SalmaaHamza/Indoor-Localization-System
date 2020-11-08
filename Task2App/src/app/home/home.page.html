@@ -17,8 +17,19 @@
     <svg id="svg1">
       <g>
         <text id="chk" x=70 y=30>&#x2639;
-          <animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="2s" repeatCount="indefinite" />
+          <animateMotion id="Xanimation" begin="indefinite" path="M 0 0 L 0 0" dur="2s" fill="freeze"
+            restart="whenNotActive" additive="sum" accumulate="sum" />
+          <animateMotion id="Yanimation" begin="Xanimation.end" path="M 0 0 L 0 0" dur="2s" fill="freeze" additive="sum"
+            restart="whenNotActive" />
+          <animate id="moveX" attributeType="XML" attributeName="x" from="70" to="70" dur="1s"
+            animation-timing-function=" linear" begin="indefinite" restart="whenNotActive" fill="freeze" />
+          <animate id="moveY" attributeType="XML" attributeName="y" from="30" to="30" dur="4s" begin="indefinite"
+            restart="whenNotActive" fill="freeze" />
+          <!-- <animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="2s" repeatCount="indefinite" />
+          <animate attributeType="CSS" attributeName="x" from="70" to="150" dur="2s" repeatCount="indefinite" /> -->
+
         </text>
+
       </g>
     </svg>
   </div>
