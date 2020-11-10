@@ -73,7 +73,6 @@ export class HomePage implements OnInit {
                 this.xAnimation.beginElement();
 
                 this.value_fb = data.toString();
-                // this.yCoord = this.value_fb.toString();
                 this.getLocation();
 
                 // this.testText("yAnimation", "0", "0", "65", "0");
@@ -89,7 +88,7 @@ export class HomePage implements OnInit {
         // console.log(this.value_fb);
         // console.log("y=", this.loctionDict["0"]['y']);
         // console.log(n)
-        if (this.loctionDict[this.value_fb]['x'] === 135) {
+        if (this.oldVal['x'] === 135 && this.loctionDict[this.value_fb]['x'] === 135) {
             $('#moveY').attr(
                 {
 
@@ -101,7 +100,7 @@ export class HomePage implements OnInit {
                 , document.getElementById('moveY').getAttribute("to")
             )
         }
-        else if (this.loctionDict[this.value_fb]['x'] !== 135 && this.oldVal["x"] != 135) {
+        else {
             console.log("old_Xvalue", this.oldVal["x"]);
             document.getElementById('moveX').setAttribute("from", this.oldVal["x"]);
             document.getElementById('moveX').setAttribute("to", "135");
@@ -118,11 +117,10 @@ export class HomePage implements OnInit {
         setTimeout(() => {
             this.oldVal['x'] = this.loctionDict[this.value_fb]["x"];
             this.oldVal['y'] = this.loctionDict[this.value_fb]["y"];
-
+            console.log(this.loctionDict[this.value_fb]['x'], this.oldVal["x"]);
 
         }, 3000);
 
-        console.log(this.loctionDict[this.value_fb]['x'], this.oldVal["x"]);
 
 
     }
